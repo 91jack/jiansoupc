@@ -51,20 +51,7 @@
 			var geolocation = new BMap.Geolocation();
 			geolocation.getCurrentPosition(function(r){
 				if(this.getStatus() == BMAP_STATUS_SUCCESS){
-					var mk = new BMap.Marker(r.point);
-					map.addOverlay(mk);
-					map.panTo(r.point);
-					alert('您的位置：'+r.point.lng+','+r.point.lat);
-					// 逆地址解析
-					var geoc = new BMap.Geocoder();
-					geoc.getLocation(r.point, function(rs){
-						var addComp = rs.addressComponents;
-						var address = addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber
-						addr.innerHTML = address;
-						console.log(address);
-						alert(address)
-						//document.getElementById("demo").innerHTML(address)
-					})
+					position()
 				}
 				else {
 					alert('failed'+this.getStatus());
@@ -72,23 +59,24 @@
 			});
 			
 			function showInfo(e){
-				//alert(e.point.lng + ", " + e.point.lat);
+				position()
+				
+			}
+			map.addEventListener("click", showInfo);
+
+			function position(){
+				var mk = new BMap.Marker(e.point);
+				map.addOverlay(mk);
+				map.panTo(e.point);
+				
 				// 逆地址解析
 				var geoc = new BMap.Geocoder();
 				geoc.getLocation(e.point, function(rs){
 					var addComp = rs.addressComponents;
 					var address = addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber
 					addr.innerHTML = address;
-					var mk = new BMap.Marker(e.point);
-					map.addOverlay(mk);
-					map.panTo(e.point);
-					//console.log(address);
-					//alert(address)
-					//document.getElementById("demo").innerHTML(address)
 				})
 			}
-			map.addEventListener("click", showInfo);
-
 
 			
 
