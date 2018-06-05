@@ -51,7 +51,18 @@
 			var geolocation = new BMap.Geolocation();
 			geolocation.getCurrentPosition(function(r){
 				if(this.getStatus() == BMAP_STATUS_SUCCESS){
-					position()
+					position(r)
+//					var mk = new BMap.Marker(r.point);
+//					map.addOverlay(mk);
+//					map.panTo(r.point);
+//					
+//					// 逆地址解析
+//					var geoc = new BMap.Geocoder();
+//					geoc.getLocation(r.point, function(rs){
+//						var addComp = rs.addressComponents;
+//						var address = addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber
+//						addr.innerHTML = address;
+//					})
 				}
 				else {
 					alert('failed'+this.getStatus());
@@ -59,12 +70,22 @@
 			});
 			
 			function showInfo(e){
-				position()
-				
+				position(e)
+//				var mk = new BMap.Marker(e.point);
+//				map.addOverlay(mk);
+//				map.panTo(e.point);
+//				
+//				// 逆地址解析
+//				var geoc = new BMap.Geocoder();
+//				geoc.getLocation(e.point, function(rs){
+//					var addComp = rs.addressComponents;
+//					var address = addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber
+//					addr.innerHTML = address;
+//				})
 			}
 			map.addEventListener("click", showInfo);
 
-			function position(){
+			function position(e){
 				var mk = new BMap.Marker(e.point);
 				map.addOverlay(mk);
 				map.panTo(e.point);
