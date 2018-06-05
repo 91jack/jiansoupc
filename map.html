@@ -79,8 +79,11 @@
 					var addComp = rs.addressComponents;
 					var address = addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber
 					addr.innerHTML = address;
-					console.log(address);
-					alert(address)
+					var mk = new BMap.Marker(e.point);
+					map.addOverlay(mk);
+					map.panTo(e.point);
+					//console.log(address);
+					//alert(address)
 					//document.getElementById("demo").innerHTML(address)
 				})
 			}
