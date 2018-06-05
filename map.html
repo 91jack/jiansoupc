@@ -42,6 +42,31 @@
         ]}));	  
 	map.setCurrentCity("重庆市");          // 设置地图显示的城市 此项是必须设置的
 	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+	
+	// 
+	  var options ={};
+    //判断手机是否支持该功能,并获取经纬度
+    if(navigator.geolocation)
+    {
+        navigator.geolocation.getCurrentPosition(success,error,options);
+    }
+    else
+    {
+        alert('你的浏览器不支持定位功能');
+    }
+    //成功的回调
+    function success(lo,la)
+    {
+        var la = position.coords.latitude;
+        var lo = position.coords.longitude;
+        alert('纬度'+la);alert('经度'+lo);
+        //something.......
+    }
+    //失败的回调
+    function error(errorCode)
+    {
+        alert('获取失败，原因：'+errorCode.message);
+    }
 </script>
 	</body>
 
