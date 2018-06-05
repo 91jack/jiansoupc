@@ -47,32 +47,27 @@
 
 // 获取当前地点的经纬度
 var x=document.getElementById("demo");
-function getLocation()
-  {
+function getLocation(){
   if (navigator.geolocation)
     {
     navigator.geolocation.getCurrentPosition(showPosition);
+    
     }
-  else{x.innerHTML="Geolocation is not supported by this browser.";}
+  else{
+  	alert('999999999999999999')
   }
-function showPosition(position)
-  {
-  x.innerHTML="Latitude: " + position.coords.latitude +
-  "<br />Longitude: " + position.coords.longitude;
-  }
+}
+
+function showPosition(position){
+	console.log(position.coords.latitude, position.coords.longitude)
+	map.clearOverlays(); 
+	var new_point = new BMap.Point( position.coords.longitude,position.coords.latitude);
+	var marker = new BMap.Marker(new_point);  // 创建标注
+	map.addOverlay(marker);              // 将标注添加到地图中
+	map.panTo(new_point);   
+}
   
-   getLocation()
-
-// 用经纬度设置地图中心点
-	function theLocation(){
-		if(document.getElementById("longitude").value != "" && document.getElementById("latitude").value != ""){
-			map.clearOverlays(); 
-			var new_point = new BMap.Point(document.getElementById("longitude").value,document.getElementById("latitude").value);
-			var marker = new BMap.Marker(new_point);  // 创建标注
-			map.addOverlay(marker);              // 将标注添加到地图中
-			map.panTo(new_point);      
-		}
-	}
+getLocation()
 
 
 
@@ -80,31 +75,7 @@ function showPosition(position)
 
 
 
-	// 
-	  var options ={};
-    //判断手机是否支持该功能,并获取经纬度
-    if(navigator.geolocation)
-    {
-        navigator.geolocation.getCurrentPosition(success,error,options);
-    }
-    else
-    {
-        alert('你的浏览器不支持定位功能');
-    }
-    //成功的回调
-    function success(lo,la)
-    {
-        var la = position.coords.latitude;
-        var lo = position.coords.longitude;
-        alert('纬度'+la);alert('经度'+lo);
-        console.log(la,lo)
-        //something.......
-    }
-    //失败的回调
-    function error(errorCode)
-    {
-        alert('获取失败，原因：'+errorCode.message);
-    }
+	
 </script>
 	</body>
 
