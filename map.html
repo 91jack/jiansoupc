@@ -69,10 +69,11 @@ function showPosition(position){
     alert('纬度'+la);
     alert('经度'+lo);
     x.innerHTML = '纬度:'+la + '经度:'+lo
+    var ggPoint = new BMap.Point(lo,la);
     
     
 	map.clearOverlays(); 
-	var new_point = new BMap.Point( position.coords.longitude,position.coords.latitude);
+	var new_point = new BMap.Point(ggPoint);
 	var marker = new BMap.Marker(new_point);  // 创建标注
 	map.addOverlay(marker);              // 将标注添加到地图中
 	map.panTo(new_point);   
