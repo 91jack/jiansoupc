@@ -54,8 +54,8 @@
 					geoc.getLocation(r.point, function(rs){
 						var addComp = rs.addressComponents;
 						var address = addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber
-						alert(address);
-						document.getElementById("demo").innerHTML(address)
+						console.log(address);
+						//document.getElementById("demo").innerHTML(address)
 					})
 				}
 				else {
