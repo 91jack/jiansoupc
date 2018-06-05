@@ -12,7 +12,7 @@
 			body, html{width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
 			#map {
 				width:100%;
-				height: 500px;
+				height: 300px;
 			}
 		</style>
 		<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=wqB7npvF7DsDGlFG2oYhih93K5iEqsou"></script>
@@ -64,6 +64,13 @@ function getLocation(){
 
 function showPosition(position){
 	console.log(position.coords.latitude, position.coords.longitude)
+	var la = position.coords.latitude;
+    var lo = position.coords.longitude;
+    alert('纬度'+la);
+    alert('经度'+lo);
+    x.innerHTML = '纬度:'+la + '经度:'+lo
+    
+    
 	map.clearOverlays(); 
 	var new_point = new BMap.Point( position.coords.longitude,position.coords.latitude);
 	var marker = new BMap.Marker(new_point);  // 创建标注
