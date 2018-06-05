@@ -39,7 +39,8 @@
 		<script type="text/javascript">
 			// 获取当前地点的经纬度
 			if (navigator.geolocation){
-		    	navigator.geolocation.getCurrentPosition(showPosition);
+		    	var position = navigator.geolocation.getCurrentPosition();
+		    	alert(position)
 		    }else{
 			  	alert('定位失败')
 			}
