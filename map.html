@@ -37,49 +37,30 @@
 	    <p id="demo">地址：</p>
 		
 		<script type="text/javascript">
-	// 百度地图API功能
-	var map = new BMap.Map("map");    // 创建Map实例
-	map.centerAndZoom(new BMap.Point(106.558027,29.569238), 14);  // 初始化地图,设置中心点坐标和地图级别
-	//添加地图类型控件
-//	map.addControl(new BMap.MapTypeControl({
-//		mapTypes:[
-//          BMAP_NORMAL_MAP,
-//          BMAP_HYBRID_MAP
-//      ]}));	  
-	map.setCurrentCity("重庆市");          // 设置地图显示的城市 此项是必须设置的
-//	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
-
-// 获取当前地点的经纬度
-var x=document.getElementById("demo");
-function getLocation(){
-  if (navigator.geolocation)
-    {
-    navigator.geolocation.getCurrentPosition(showPosition);
-    
-    }
-  else{
-  	alert('999999999999999999')
-  }
-}
-
-function showPosition(position){
-	console.log(position.coords.latitude, position.coords.longitude)
-	var la = position.coords.latitude;
-    var lo = position.coords.longitude;
-    alert('纬度'+la);
-    alert('经度'+lo);
-    x.innerHTML = '纬度:'+la + '经度:'+lo
-    var ggPoint = new BMap.Point(lo,la);
-    
-    
-	map.clearOverlays(); 
-	var new_point = new BMap.Point(ggPoint);
-	var marker = new BMap.Marker(new_point);  // 创建标注
-	map.addOverlay(marker);              // 将标注添加到地图中
-	map.panTo(new_point);   
-}
+			// 获取当前地点的经纬度
+			if (navigator.geolocation){
+		    	navigator.geolocation.getCurrentPosition(showPosition);
+		    }else{
+			  	alert('定位失败')
+			}
   
-getLocation()
+			var x=document.getElementById("demo");
+			
+			function showPosition(position){
+				// GPS 坐标
+				var x = position.coords.latitude;
+			    var y = position.coords.longitude;
+			    x.innerHTML = '经度:'+ x + '纬度:'+ y
+			    var ggPoint = new BMap.Point(x,y);
+			    
+			   	// 地图初始化
+			   	var map = new BMap.Map("map");    // 创建Map实例
+				map.centerAndZoom(ggPoint, 14);  // 初始化地图,设置中心点坐标和地图级别	  
+				map.setCurrentCity("重庆市");          // 设置地图显示的城市 此项是必须设置的
+			}
+
+	
+
 
 
 
@@ -88,7 +69,7 @@ getLocation()
 
 
 	
-</script>
+		</script>
 	</body>
 
 </html>
